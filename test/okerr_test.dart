@@ -44,4 +44,18 @@ void main() {
       expect(value, equals('Result(error: 0)'));
     });
   });
+
+  group('result methods', () {
+    test('is ok and not err?', () async {
+      final result = Ok(0);
+      expect(result.isOk, equals(true));
+      expect(result.isErr, equals(false));
+    });
+
+    test('is err and not ok?', () {
+      final result = Err(0);
+      expect(result.isErr, equals(true));
+      expect(result.isOk, equals(false));
+    });
+  });
 }
