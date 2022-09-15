@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library okerr;
 
-export 'src/okerr_base.dart';
+export 'src/result.dart';
 
 // TODO: Export any libraries intended for clients of this package.
