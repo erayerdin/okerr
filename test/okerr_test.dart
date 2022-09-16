@@ -2,19 +2,6 @@ import 'package:okerr/okerr.dart';
 import 'package:test/test.dart';
 
 void main() {
-  // TODO write a test
-  // group('A group of tests', () {
-  //   final awesome = Awesome();
-
-  //   setUp(() {
-  //     // Additional setup goes here.
-  //   });
-
-  //   test('First Test', () {
-  //     expect(awesome.isAwesome, isTrue);
-  //   });
-  // });
-
   group('construct', () {
     test('ok with factory constructor', () {
       Result.ok(0);
