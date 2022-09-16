@@ -12,4 +12,5 @@
     },
     "explorerExclude.backup": {},
     "licenser.license": "AL2",
+    "editor.formatOnSave": true,
 }
