@@ -188,4 +188,30 @@ class Result<T, E> {
 
     return def;
   }
+
+  /// Returns the contained `Ok` value or computes it from a closure.
+  T unwrapOrElse(T Function(E error) op) {
+    if (isOk) {
+      return _value as T;
+    }
+
+    return op(_error as E);
+  }
+
+  // ------------------------ //
+  // Pattern Matching Methods //
+  // ------------------------ //
+
+  /// Matches the result and returns `ok` function if the result is `Ok` or
+  /// returns `err` function if the result is `Err`.
+  O match<O>({
+    required O Function(T value) ok,
+    required O Function(E error) err,
+  }) {
+    if (isOk) {
+      return ok(_value as T);
+    }
+
+    return err(_error as E);
+  }
 }

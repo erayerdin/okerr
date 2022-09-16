@@ -304,5 +304,41 @@ void main() {
         expect(value, equals(1));
       });
     });
+
+    group('unwrap or else', () {
+      test('if ok', () {
+        // TODO find a workaround for dynamic target
+        final value = Ok(0).unwrapOrElse((error) => error + 1);
+        expect(value, equals(0));
+      });
+
+      test('if err', () {
+        // TODO find a workaround for dynamic target
+        final value = Err(0).unwrapOrElse((error) => error + 1);
+        expect(value, equals(1));
+      });
+    });
+
+    group('match', () {
+      test('if ok', () {
+        // TODO find a workaround for dynamic target
+        final value = Ok(0).match(
+          ok: (value) => value + 1,
+          err: (error) => error - 1,
+        );
+
+        expect(value, 1);
+      });
+
+      test('if err', () {
+        // TODO find a workaround for dynamic target
+        final value = Err(0).match(
+          ok: (value) => value + 1,
+          err: (error) => error - 1,
+        );
+
+        expect(value, -1);
+      });
+    });
   });
 }
