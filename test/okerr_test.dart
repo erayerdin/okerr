@@ -107,7 +107,9 @@ void main() {
     group('map or else', () {
       test('if ok', () {
         final value = Ok(0).mapOrElse(
+          // TODO find a workaround for dynamic target
           def: (error) => error + 1,
+          // TODO find a workaround for dynamic target
           f: (value) => value - 1,
         );
         expect(value, equals(-1));
@@ -115,7 +117,9 @@ void main() {
 
       test('if err', () {
         final value = Err(0).mapOrElse(
+          // TODO find a workaround for dynamic target
           def: (error) => error + 1,
+          // TODO find a workaround for dynamic target
           f: (value) => value - 1,
         );
         expect(value, equals(1));
