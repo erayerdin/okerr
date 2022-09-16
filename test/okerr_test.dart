@@ -220,5 +220,27 @@ void main() {
         expect(Err(0).unwrapErr(), equals(0));
       });
     });
+
+    group('and', () {
+      test('if ok and ok', () {
+        final result = Ok(0).and(Ok('1'));
+        expect(result, Ok('1'));
+      });
+
+      test('if ok and err', () {
+        final result = Ok('0').and(Err(1));
+        expect(result, Err(1));
+      });
+
+      test('if err and ok', () {
+        final result = Err(0).and(Ok('1'));
+        expect(result, Err(0));
+      });
+
+      test('if err and err', () {
+        final result = Err('0').and(Err(1));
+        expect(result, Err('0'));
+      });
+    });
   });
 }

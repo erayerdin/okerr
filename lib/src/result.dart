@@ -143,4 +143,13 @@ class Result<T, E> {
   E unwrapErr() => expectErr(
         'Result was expected to be Err but it is `$this`.',
       );
+
+  /// Returns `res` if the `result` is `Ok`, otherwise returns the `Err` value of `self`.
+  Result<U, E> and<U>(Result<U, E> res) {
+    if (isOk) {
+      return res;
+    }
+
+    return this as Result<U, E>;
+  }
 }
