@@ -292,5 +292,17 @@ void main() {
         expect(result, equals(Err(1)));
       });
     });
+
+    group('unwrap or', () {
+      test('if ok', () {
+        final value = Ok(0).unwrapOr(1);
+        expect(value, equals(0));
+      });
+
+      test('if err', () {
+        final value = Err(0).unwrapOr(1);
+        expect(value, equals(1));
+      });
+    });
   });
 }

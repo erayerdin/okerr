@@ -179,4 +179,13 @@ class Result<T, E> {
 
     return this as Result<T, F>;
   }
+
+  /// Returns the contained `Ok` value or a provided default.
+  T unwrapOr(T def) {
+    if (isOk) {
+      return _value as T;
+    }
+
+    return def;
+  }
 }
