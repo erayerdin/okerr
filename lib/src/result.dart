@@ -2,11 +2,11 @@ import 'package:okerr/okerr.dart';
 
 /// A global shorthand for `Result.ok(value)`.
 // ignore: non_constant_identifier_names
-Result Ok<T>(T value) => Result.ok(value);
+Result<T, E> Ok<T, E>(T value) => Result.ok(value);
 
 /// A global shorthand for `Result.err(error)`.
 // ignore: non_constant_identifier_names
-Result Err<E>(E error) => Result.err(error);
+Result<T, E> Err<T, E>(E error) => Result.err(error);
 
 /// Result is a type that represents either success (Ok) or failure (Err).
 class Result<T, E> {

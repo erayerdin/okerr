@@ -88,7 +88,6 @@ void main() {
       test('if ok', () {
         final value = Ok(0).mapOr(
           def: 1,
-          // TODO find a workaround for dynamic target
           f: (value) => value - 1,
         );
         expect(value, equals(-1));
@@ -109,7 +108,6 @@ void main() {
         final value = Ok(0).mapOrElse(
           // TODO find a workaround for dynamic target
           def: (error) => error + 1,
-          // TODO find a workaround for dynamic target
           f: (value) => value - 1,
         );
         expect(value, equals(-1));
@@ -117,7 +115,6 @@ void main() {
 
       test('if err', () {
         final value = Err(0).mapOrElse(
-          // TODO find a workaround for dynamic target
           def: (error) => error + 1,
           // TODO find a workaround for dynamic target
           f: (value) => value - 1,
@@ -223,29 +220,28 @@ void main() {
 
     group('and', () {
       test('if ok and ok', () {
-        final result = Ok(0).and(Ok('1'));
-        expect(result, equals(Ok('1')));
+        final result = Ok(0).and(Ok(1));
+        expect(result, equals(Ok(1)));
       });
 
       test('if ok and err', () {
-        final result = Ok('0').and(Err(1));
+        final result = Ok<int, int>(0).and(Err(1));
         expect(result, equals(Err(1)));
       });
 
       test('if err and ok', () {
-        final result = Err(0).and(Ok('1'));
+        final result = Err<int, int>(0).and(Ok(1));
         expect(result, equals(Err(0)));
       });
 
       test('if err and err', () {
-        final result = Err('0').and(Err(1));
-        expect(result, equals(Err('0')));
+        final result = Err<int, int>(0).and(Err(1));
+        expect(result, equals(Err(0)));
       });
     });
 
     group('and then', () {
       test('if ok', () {
-        // TODO find a workaround for dynamic target
         final result = Ok(0).andThen((value) => Ok(value + 1));
         expect(result, equals(Ok(1)));
       });
@@ -264,12 +260,12 @@ void main() {
       });
 
       test('if ok and err', () {
-        final result = Ok(0).or(Err(1));
+        final result = Ok<int, int>(0).or(Err(1));
         expect(result, equals(Ok(0)));
       });
 
       test('if err and ok', () {
-        final result = Err(0).or(Ok(1));
+        final result = Err<int, int>(0).or(Ok(1));
         expect(result, equals(Ok(1)));
       });
 
@@ -307,13 +303,11 @@ void main() {
 
     group('unwrap or else', () {
       test('if ok', () {
-        // TODO find a workaround for dynamic target
-        final value = Ok(0).unwrapOrElse((error) => error + 1);
+        final value = Ok<int, int>(0).unwrapOrElse((error) => error + 1);
         expect(value, equals(0));
       });
 
       test('if err', () {
-        // TODO find a workaround for dynamic target
         final value = Err(0).unwrapOrElse((error) => error + 1);
         expect(value, equals(1));
       });
