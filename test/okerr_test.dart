@@ -57,5 +57,17 @@ void main() {
       expect(result.isErr, equals(true));
       expect(result.isOk, equals(false));
     });
+
+    test('ok and not err', () {
+      final result = Ok(0);
+      expect(result.ok, equals(0));
+      expect(result.err, equals(null));
+    });
+
+    test('err and not ok', () {
+      final result = Err(0);
+      expect(result.err, equals(0));
+      expect(result.ok, equals(null));
+    });
   });
 }

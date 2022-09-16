@@ -61,4 +61,10 @@ class Result<T, E> {
 
   /// Returns `true` if the result is `Err`.
   bool get isErr => error != null && value == null;
+
+  /// Converts from `Result<T, E> to `T?`.
+  T? get ok => value;
+
+  /// Converts from `Result<T, E> to `E?`.
+  E? get err => error;
 }
