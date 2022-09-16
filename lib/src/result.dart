@@ -89,4 +89,15 @@ class Result<T, E> {
 
     return f(_value as T);
   }
+
+  U mapOrElse<U>({
+    required U Function(E) def,
+    required U Function(T) f,
+  }) {
+    if (isErr) {
+      return def(_error as E);
+    }
+
+    return f(_value as T);
+  }
 }

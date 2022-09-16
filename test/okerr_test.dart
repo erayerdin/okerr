@@ -91,7 +91,7 @@ void main() {
           // TODO find a workaround for dynamic target
           f: (value) => value - 1,
         );
-        expect(value, -1);
+        expect(value, equals(-1));
       });
 
       test('if err', () {
@@ -100,7 +100,25 @@ void main() {
           // TODO find a workaround for dynamic target
           f: (value) => value - 1,
         );
-        expect(value, 1);
+        expect(value, equals(1));
+      });
+    });
+
+    group('map or else', () {
+      test('if ok', () {
+        final value = Ok(0).mapOrElse(
+          def: (error) => error + 1,
+          f: (value) => value - 1,
+        );
+        expect(value, equals(-1));
+      });
+
+      test('if err', () {
+        final value = Err(0).mapOrElse(
+          def: (error) => error + 1,
+          f: (value) => value - 1,
+        );
+        expect(value, equals(1));
       });
     });
   });
