@@ -83,5 +83,25 @@ void main() {
         expect(result2.err, equals(0));
       });
     });
+
+    group('map or', () {
+      test('if ok', () {
+        final value = Ok(0).mapOr(
+          def: 1,
+          // TODO find a workaround for dynamic target
+          f: (value) => value - 1,
+        );
+        expect(value, -1);
+      });
+
+      test('if err', () {
+        final value = Err(0).mapOr(
+          def: 1,
+          // TODO find a workaround for dynamic target
+          f: (value) => value - 1,
+        );
+        expect(value, 1);
+      });
+    });
   });
 }

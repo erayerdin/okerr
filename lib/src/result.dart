@@ -77,4 +77,16 @@ class Result<T, E> {
 
     return Result.ok(op(_value as T));
   }
+
+  U mapOr<U>({
+    // default is a reserved keyword, so i've used def instead
+    required U def,
+    required U Function(T) f,
+  }) {
+    if (_error != null) {
+      return def;
+    }
+
+    return f(_value as T);
+  }
 }
