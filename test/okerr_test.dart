@@ -125,5 +125,19 @@ void main() {
         expect(value, equals(1));
       });
     });
+
+    group('map err', () {
+      test('if ok', () {
+        final result = Ok(0).mapErr((error) => error + 1);
+        expect(result.ok, 0);
+        expect(result.err, null);
+      });
+
+      test('if err', () {
+        final result = Err(0).mapErr((error) => error + 1);
+        expect(result.err, 1);
+        expect(result.ok, null);
+      });
+    });
   });
 }

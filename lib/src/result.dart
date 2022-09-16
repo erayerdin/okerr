@@ -102,4 +102,12 @@ class Result<T, E> {
 
     return f(_value as T);
   }
+
+  Result<T, F> mapErr<F>(F Function(E error) op) {
+    if (isOk) {
+      return Result.ok(_value as T);
+    }
+
+    return Result.err(op(_error as E));
+  }
 }
