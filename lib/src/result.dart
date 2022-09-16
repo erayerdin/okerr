@@ -71,7 +71,7 @@ class Result<T, E> {
 
   /// Maps a `Result<T, E>` to `Result<U, E>` by applying a function to a contained `Ok` value, leaving an `Err` value untouched.
   Result<U, E> map<U>(U Function(T) op) {
-    if (_error != null) {
+    if (isErr) {
       return Result.err(_error as E);
     }
 
@@ -83,7 +83,7 @@ class Result<T, E> {
     required U def,
     required U Function(T) f,
   }) {
-    if (_error != null) {
+    if (isErr) {
       return def;
     }
 
