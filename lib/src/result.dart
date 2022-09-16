@@ -70,7 +70,7 @@ class Result<T, E> {
   E? get err => _error;
 
   /// Maps a `Result<T, E>` to `Result<U, E>` by applying a function to a contained `Ok` value, leaving an `Err` value untouched.
-  Result<U, E> map<U>(U Function(T) op) {
+  Result<U, E> map<U>(U Function(T value) op) {
     if (isErr) {
       return Result.err(_error as E);
     }
@@ -82,7 +82,7 @@ class Result<T, E> {
   U mapOr<U>({
     // default is a reserved keyword, so i've used def instead
     required U def,
-    required U Function(T) f,
+    required U Function(T value) f,
   }) {
     if (isErr) {
       return def;
@@ -93,8 +93,8 @@ class Result<T, E> {
 
   /// Maps a `Result<T, E>` to `U` by applying fallback function default to a contained `Err` value, or function `f` to a contained `Ok` value.
   U mapOrElse<U>({
-    required U Function(E) def,
-    required U Function(T) f,
+    required U Function(E error) def,
+    required U Function(T value) f,
   }) {
     if (isErr) {
       return def(_error as E);
