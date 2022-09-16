@@ -1,3 +1,5 @@
+import 'package:okerr/okerr.dart';
+
 /// A global shorthand for `Result.ok(value)`.
 // ignore: non_constant_identifier_names
 Result Ok<T>(T value) => Result.ok(value);
@@ -109,5 +111,13 @@ class Result<T, E> {
     }
 
     return Result.err(op(_error as E));
+  }
+
+  T expect(String msg) {
+    if (isErr) {
+      throw ResultException(msg);
+    }
+
+    return _value as T;
   }
 }
