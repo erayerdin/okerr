@@ -152,4 +152,13 @@ class Result<T, E> {
 
     return this as Result<U, E>;
   }
+
+  /// Calls `op` if the result is `Ok`, otherwise returns the `Err` value of `self`.
+  Result<U, E> andThen<U>(Result<U, E> Function(T value) op) {
+    if (isOk) {
+      return op(_value as T);
+    }
+
+    return this as Result<U, E>;
+  }
 }
