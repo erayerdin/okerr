@@ -278,5 +278,19 @@ void main() {
         expect(result, equals(Err(1)));
       });
     });
+
+    group('or else', () {
+      test('if ok', () {
+        // TODO find a workaround for dynamic target
+        final result = Ok(0).orElse((error) => Err(error + 1));
+        expect(result, equals(Ok(0)));
+      });
+
+      test('if err', () {
+        // TODO find a workaround for dynamic target
+        final result = Err(0).orElse((error) => Err(error + 1));
+        expect(result, equals(Err(1)));
+      });
+    });
   });
 }

@@ -162,9 +162,19 @@ class Result<T, E> {
     return this as Result<U, E>;
   }
 
+  /// Returns `res` if the result is `Err`, otherwise returns the `Ok` value of `self`.
   Result<T, F> or<F>(Result<T, F> res) {
     if (isErr) {
       return res;
+    }
+
+    return this as Result<T, F>;
+  }
+
+  /// Calls `op` if the result is `Err`, otherwise returns the `Ok` value of `self`.
+  Result<T, F> orElse<F>(Result<T, F> Function(E error) op) {
+    if (isErr) {
+      return op(_error as E);
     }
 
     return this as Result<T, F>;
