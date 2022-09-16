@@ -160,5 +160,24 @@ void main() {
         );
       });
     });
+
+    group('unwrap', () {
+      test('if ok', () {
+        expect(Ok(0).unwrap(), equals(0));
+      });
+
+      test('if err', () {
+        expect(
+          () => Err(0).unwrap(),
+          throwsA(
+            isA<ResultException>().having(
+              (exc) => exc.cause,
+              'exception has message',
+              'Result was expected to be Ok but it is `Result(error: 0)`.',
+            ),
+          ),
+        );
+      });
+    });
   });
 }

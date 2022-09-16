@@ -120,4 +120,6 @@ class Result<T, E> {
 
     return _value as T;
   }
+
+  T unwrap() => expect('Result was expected to be Ok but it is `${this}`.');
 }
