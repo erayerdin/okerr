@@ -78,6 +78,7 @@ class Result<T, E> {
     return Result.ok(op(_value as T));
   }
 
+  /// Returns the provided default (if `Err`), or applies a function to the contained value (if `Ok`).
   U mapOr<U>({
     // default is a reserved keyword, so i've used def instead
     required U def,
@@ -90,6 +91,7 @@ class Result<T, E> {
     return f(_value as T);
   }
 
+  /// Maps a `Result<T, E>` to `U` by applying fallback function default to a contained `Err` value, or function `f` to a contained `Ok` value.
   U mapOrElse<U>({
     required U Function(E) def,
     required U Function(T) f,
