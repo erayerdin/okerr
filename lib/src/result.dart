@@ -105,6 +105,7 @@ class Result<T, E> {
     return f(_value as T);
   }
 
+  /// Maps a `Result<T, E>` to `Result<T, F>` by applying a function to a contained `Err` value, leaving an `Ok` value untouched.
   Result<T, F> mapErr<F>(F Function(E error) op) {
     if (isOk) {
       return Result.ok(_value as T);
@@ -113,6 +114,8 @@ class Result<T, E> {
     return Result.err(op(_error as E));
   }
 
+  /// Returns the contained `Ok` value. If self is `Err`, throws
+  /// `ResultException` with the given message.
   T expect(String msg) {
     if (isErr) {
       throw ResultException(msg);
@@ -121,8 +124,12 @@ class Result<T, E> {
     return _value as T;
   }
 
+  /// Returns the contained `Ok` value. If self is `Err`, throws
+  /// `ResultException`.
   T unwrap() => expect('Result was expected to be Ok but it is `$this`.');
 
+  /// Returns the contained `Err` value. If self is `Ok`, throws
+  /// `ResultException` with the given message.
   E expectErr(String msg) {
     if (isOk) {
       throw ResultException(msg);
@@ -131,6 +138,8 @@ class Result<T, E> {
     return _error as E;
   }
 
+  /// Returns the contained `Err` value. If self is `Ok`, throws
+  /// `ResultException`.
   E unwrapErr() => expectErr(
         'Result was expected to be Err but it is `$this`.',
       );
