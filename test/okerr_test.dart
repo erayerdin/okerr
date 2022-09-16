@@ -256,5 +256,27 @@ void main() {
         expect(result, equals(Err(0)));
       });
     });
+
+    group('or', () {
+      test('if ok and ok', () {
+        final result = Ok(0).or(Ok(1));
+        expect(result, equals(Ok(0)));
+      });
+
+      test('if ok and err', () {
+        final result = Ok(0).or(Err(1));
+        expect(result, equals(Ok(0)));
+      });
+
+      test('if err and ok', () {
+        final result = Err(0).or(Ok(1));
+        expect(result, equals(Ok(1)));
+      });
+
+      test('if err and err', () {
+        final result = Err(0).or(Err(1));
+        expect(result, equals(Err(1)));
+      });
+    });
   });
 }

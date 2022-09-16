@@ -161,4 +161,12 @@ class Result<T, E> {
 
     return this as Result<U, E>;
   }
+
+  Result<T, F> or<F>(Result<T, F> res) {
+    if (isErr) {
+      return res;
+    }
+
+    return this as Result<T, F>;
+  }
 }
