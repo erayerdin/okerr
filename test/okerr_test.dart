@@ -69,5 +69,19 @@ void main() {
       expect(result.err, equals(0));
       expect(result.ok, equals(null));
     });
+
+    group('map', () {
+      test('if ok', () {
+        final result1 = Ok(0);
+        final result2 = result1.map((value) => value != 0);
+        expect(result2.ok, equals(false));
+      });
+
+      test('if err', () {
+        final result1 = Err(0);
+        final result2 = result1.map((value) => value != 0);
+        expect(result2.err, equals(0));
+      });
+    });
   });
 }

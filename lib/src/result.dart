@@ -68,4 +68,13 @@ class Result<T, E> {
 
   /// Converts from `Result<T, E> to `E?`.
   E? get err => _error;
+
+  /// Maps a `Result<T, E>` to `Result<U, E>` by applying a function to a contained `Ok` value, leaving an `Err` value untouched.
+  Result<U, E> map<U>(U Function(T) op) {
+    if (_error != null) {
+      return Result.err(_error as E);
+    }
+
+    return Result.ok(op(_value as T));
+  }
 }
