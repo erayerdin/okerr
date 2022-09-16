@@ -1,4 +1,7 @@
-# Okerr
+# okerr
+
+[![Pub Version](https://img.shields.io/pub/v/okerr?label=version&logo=dart&style=flat-square)](https://pub.dev/packages/okerr)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/erayerdin/okerr/Dart?logo=github&style=flat-square)
 
 Okerr is a Dart package for [Result type of Rust](https://doc.rust-lang.org/std/result/index.html).
 
