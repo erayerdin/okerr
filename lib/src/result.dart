@@ -121,5 +121,17 @@ class Result<T, E> {
     return _value as T;
   }
 
-  T unwrap() => expect('Result was expected to be Ok but it is `${this}`.');
+  T unwrap() => expect('Result was expected to be Ok but it is `$this`.');
+
+  E expectErr(String msg) {
+    if (isOk) {
+      throw ResultException(msg);
+    }
+
+    return _error as E;
+  }
+
+  E unwrapErr() => expectErr(
+        'Result was expected to be Err but it is `$this`.',
+      );
 }

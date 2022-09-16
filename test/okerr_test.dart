@@ -179,5 +179,46 @@ void main() {
         );
       });
     });
+
+    group('expect err', () {
+      test('if ok', () {
+        expect(
+          () => Ok(0).expectErr('custom message'),
+          throwsA(
+            isA<ResultException>().having(
+              (exc) => exc.cause,
+              'exception has message',
+              'custom message',
+            ),
+          ),
+        );
+      });
+
+      test('if err', () {
+        expect(
+          Err(0).expectErr('custom message'),
+          equals(0),
+        );
+      });
+    });
+
+    group('unwrap err', () {
+      test('if ok', () {
+        expect(
+          () => Ok(0).unwrapErr(),
+          throwsA(
+            isA<ResultException>().having(
+              (exc) => exc.cause,
+              'exception has message',
+              'Result was expected to be Err but it is `Result(value: 0)`.',
+            ),
+          ),
+        );
+      });
+
+      test('if err', () {
+        expect(Err(0).unwrapErr(), equals(0));
+      });
+    });
   });
 }
