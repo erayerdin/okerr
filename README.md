@@ -3,11 +3,11 @@
 [![Pub Version](https://img.shields.io/pub/v/okerr?label=version&logo=dart&style=flat-square)](https://pub.dev/packages/okerr)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/erayerdin/okerr/Dart?logo=github&style=flat-square)
 
-Okerr is a Dart package for [Result type of Rust](https://doc.rust-lang.org/std/result/index.html).
+Okerr is a Dart package for [Result type of Rust](https://doc.rust-lang.org/std/result/enum.Result.html).
 
 ## Methods
 
-The majority of methods in [std::result of Rust](https://doc.rust-lang.org/std/result/index.html) has been implemented. The criteria for implementation are:
+The majority of methods in [std::result::Result of Rust](https://doc.rust-lang.org/std/result/enum.Result.html) has been implemented. The criteria for implementation are:
 
  - The method is not in the nightly-only experimental API. For example, [is_ok_and](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok_and) is not implemented in this package.
  - The methods that deal with ownership and borrowing do not make sense in the context of Dart. Thus, `as_mut`, `as_deref`, `as_deref_mut`, etc. are not implemented.
